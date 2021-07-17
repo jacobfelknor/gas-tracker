@@ -15,3 +15,7 @@
             Data</button>
     </div>
 </div>
+
+<app-pick-car *ngIf="this.selectedItem == 'pick-car'"></app-pick-car>
+<app-view-data *ngIf="this.selectedItem == 'view-data'"></app-view-data>
+<app-new-data *ngIf="this.selectedItem == 'new-data'"></app-new-data>
