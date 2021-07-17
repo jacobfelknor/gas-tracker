@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark" data-toggle="affix">
+    <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
+        <span class="navbar-brand">Gas Tracker</span>
+    </div>
+</nav>
+
+
+<div class="container d-flex justify-content-center">
+    <div class="btn-group-vertical menu" style="width: 100%;" role="group">
+        <button type="button" (click)="selectMenuItem($event)" component="pick-car" class="btn btn-light btn-block">Pick
+            Car</button>
+        <button type="button" (click)="selectMenuItem($event)" component="view-data"
+            class="btn btn-light btn-block">View Data</button>
+        <button type="button" (click)="selectMenuItem($event)" component="new-data" class="btn btn-light btn-block">New
+            Data</button>
+    </div>
+</div>
