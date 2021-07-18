@@ -1,1 +1,19 @@
-<p>pick-car works!</p>
+<!-- <h2>My Cars</h2> -->
+<!-- <div>
+    <label for="new-car">car name: </label>
+    <input id="new-car" #carName />
+
+    (click) passes input value to add() and then clears the input
+    <button class="add-button" (click)="add(carName.value); carName.value=''">
+        Add car
+    </button>
+</div> -->
+<ul class="cars">
+    <li *ngFor="let car of cars">
+        <!-- <a routerLink="/detail/{{car.id}}">
+            <span class="badge">{{car.id}}</span> {{car.name}}
+        </a> -->
+        <!-- <button class="delete" title="delete car" (click)="delete(car)">x</button> -->
+        {{ car.name }}
+    </li>
+</ul>
