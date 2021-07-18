@@ -8,12 +8,11 @@
         Add car
     </button>
 </div> -->
-<ul class="cars">
-    <li *ngFor="let car of cars">
-        <!-- <a routerLink="/detail/{{car.id}}">
-            <span class="badge">{{car.id}}</span> {{car.name}}
-        </a> -->
-        <!-- <button class="delete" title="delete car" (click)="delete(car)">x</button> -->
-        {{ car.name }}
-    </li>
-</ul>
+
+<div class="container">
+    <div class="row">
+        <div *ngFor="let car of cars" class="col text-center">
+            <button (click)='selectCar(car)' class='btn btn-dark'>{{ car.name }}</button>
+        </div>
+    </div>
+</div>

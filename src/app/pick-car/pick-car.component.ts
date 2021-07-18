@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CarService } from '../car.service';
 import { Car } from './car';
 
@@ -10,6 +10,8 @@ import { Car } from './car';
 export class PickCarComponent implements OnInit {
 
   cars: Car[] = [];
+
+  @Output() selectedCar = new EventEmitter<Car>();
 
   constructor(private carService: CarService) { }
 
@@ -33,6 +35,10 @@ export class PickCarComponent implements OnInit {
   delete(car: Car): void {
     this.cars = this.cars.filter(h => h !== car);
     this.carService.deleteCar(car).subscribe();
+  }
+
+  selectCar(car: Car): void {
+    this.selectedCar.emit(car);
   }
 
 }

@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" data-toggle="affix">
     <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
-        <span class="navbar-brand">Gas Tracker</span>
+        <span *ngIf="!selectedCar" class="navbar-brand">Gas Tracker</span>
+        <span *ngIf="selectedCar" class="navbar-brand">Gas Tracker ({{ selectedCar.name }})</span>
     </div>
 </nav>
-
 
 <div class="container d-flex justify-content-center">
     <div class="btn-group-vertical menu" style="width: 100%;" role="group">
@@ -16,6 +16,6 @@
     </div>
 </div>
 
-<app-pick-car *ngIf="this.selectedItem == 'pick-car'"></app-pick-car>
+<app-pick-car *ngIf="this.selectedItem == 'pick-car'" (selectedCar)='selectCar($event)'></app-pick-car>
 <app-view-data *ngIf="this.selectedItem == 'view-data'"></app-view-data>
 <app-new-data *ngIf="this.selectedItem == 'new-data'"></app-new-data>
