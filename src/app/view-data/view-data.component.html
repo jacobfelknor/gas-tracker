@@ -1,12 +1,24 @@
-<p *ngIf='selectedCar'>viewing data for {{ selectedCar.name }}. I should view data for car id {{ selectedCar.id }}</p>
-
-
-<div *ngIf='carGasData'>
-    <div *ngFor='let data of carGasData'>
-        {{ data.date }}
-        {{ data.cost }}
-        {{ data.gallons_used }}
-        {{ data.miles_driven }}
-        {{ data.mpg }}
+<div class="container">
+    <h5 *ngIf="selectedCar">Data for {{ selectedCar.pprint }}</h5>
+    <h5 *ngIf="!selectedCar">No car is currently selected</h5>
+    <div *ngIf='selectedCar'>
+        <table class="table">
+            <thead>
+                <th>Date</th>
+                <th>Cost</th>
+                <th>Gallons Used</th>
+                <th>Miles Driven</th>
+                <th>MPG</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of carGasData">
+                    <td>{{ data.date }}</td>
+                    <td>{{ data.cost }}</td>
+                    <td>{{ data.gallons_used }}</td>
+                    <td>{{ data.miles_driven }}</td>
+                    <td>{{ data.mpg }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

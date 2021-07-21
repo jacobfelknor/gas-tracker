@@ -4,6 +4,7 @@ export interface Car {
     make: string;
     model: string;
     year: string;
+    pprint: string;
 }
 
 export interface CarGasData {

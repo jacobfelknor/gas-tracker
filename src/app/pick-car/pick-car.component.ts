@@ -39,6 +39,7 @@ export class PickCarComponent implements OnInit {
 
   selectCar(car: Car): void {
     this.selectedCar.emit(car);
+    $("#view-data-btn").trigger("click");
   }
 
 }
