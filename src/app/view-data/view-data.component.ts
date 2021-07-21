@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Car } from '../pick-car/car';
 
 @Component({
   selector: 'app-view-data',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewDataComponent implements OnInit {
 
+  @Input() public selectedCar: Car | undefined;
+
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

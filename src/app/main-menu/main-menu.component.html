@@ -17,5 +17,5 @@
 </div>
 
 <app-pick-car *ngIf="this.selectedItem == 'pick-car'" (selectedCar)='selectCar($event)'></app-pick-car>
-<app-view-data *ngIf="this.selectedItem == 'view-data'"></app-view-data>
+<app-view-data *ngIf="this.selectedItem == 'view-data'" [selectedCar]="selectedCar"></app-view-data>
 <app-new-data *ngIf="this.selectedItem == 'new-data'"></app-new-data>
