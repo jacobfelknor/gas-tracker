@@ -20,22 +20,22 @@ export class PickCarComponent implements OnInit {
   }
 
   getCars(): void {
-    this.carService.getCares().subscribe(cars => this.cars = cars);
+    this.carService.getCars().subscribe(cars => this.cars = cars);
   }
 
-  add(name: string): void {
-    name = name.trim();
-    if (name) {
-      this.carService.addCar({ name } as Car).subscribe(car => this.cars.push(car));
-    } else {
-      return;
-    }
-  }
+  // add(name: string): void {
+  //   name = name.trim();
+  //   if (name) {
+  //     this.carService.addCar({ name } as Car).subscribe(car => this.cars.push(car));
+  //   } else {
+  //     return;
+  //   }
+  // }
 
-  delete(car: Car): void {
-    this.cars = this.cars.filter(h => h !== car);
-    this.carService.deleteCar(car).subscribe();
-  }
+  // delete(car: Car): void {
+  //   this.cars = this.cars.filter(h => h !== car);
+  //   this.carService.deleteCar(car).subscribe();
+  // }
 
   selectCar(car: Car): void {
     this.selectedCar.emit(car);

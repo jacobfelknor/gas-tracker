@@ -1,1 +1,12 @@
-<p *ngIf='selectedCar'>viewing data for {{ selectedCar.name }}</p>
+<p *ngIf='selectedCar'>viewing data for {{ selectedCar.name }}. I should view data for car id {{ selectedCar.id }}</p>
+
+
+<div *ngIf='carGasData'>
+    <div *ngFor='let data of carGasData'>
+        {{ data.date }}
+        {{ data.cost }}
+        {{ data.gallons_used }}
+        {{ data.miles_driven }}
+        {{ data.mpg }}
+    </div>
+</div>

@@ -3,14 +3,14 @@ import { Observable, of } from 'rxjs';
 // import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Car } from './pick-car/car';
+import { Car, CarGasData } from './pick-car/car';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarService {
 
-  private carsUrl = 'api/cars';  // URL to web api
+  private carsUrl = 'http://10.0.0.173:8000/cars';  // URL to web api
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -20,12 +20,12 @@ export class CarService {
   //   private messageService: MessageService) { }
   constructor(private http: HttpClient) { }
 
-  /** GET cares from the server */
-  getCares(): Observable<Car[]> {
-    return this.http.get<Car[]>(this.carsUrl)
+  /** GET cars from the server */
+  getCars(): Observable<Car[]> {
+    return this.http.get<Car[]>(`${this.carsUrl}/get_cars/`)
       .pipe(
-        tap(_ => this.log('fetched cares')),
-        catchError(this.handleError<Car[]>('getCares', []))
+        tap(_ => this.log(_)),
+        catchError(this.handleError<Car[]>('getCars', []))
       );
   }
 
@@ -38,41 +38,49 @@ export class CarService {
     );
   }
 
-  updateCar(car: Car): Observable<any> {
-    return this.http.put(this.carsUrl, car, this.httpOptions);
+  getGasDataForCar(car: Car): Observable<CarGasData[]> {
+    const url = `${this.carsUrl}/get_car_data/${car.id}`;
+    return this.http.get<CarGasData[]>(url).pipe(
+      tap(_ => this.log("fetched car data")),
+      catchError(this.handleError<CarGasData[]>("fetching car data"))
+    )
   }
 
-  addCar(car: Car): Observable<Car> {
-    return this.http.post<Car>(this.carsUrl, car, this.httpOptions).pipe(
-      tap((newCar: Car) => this.log(`added car w/ id=${newCar.id}`)),
-      catchError(this.handleError<Car>('addCar'))
-    );
-  }
+  // updateCar(car: Car): Observable<any> {
+  //   return this.http.put(this.carsUrl, car, this.httpOptions);
+  // }
 
-  deleteCar(car: Car): Observable<Car> {
-    let url = `${this.carsUrl}/${car.id}`;
-    return this.http.delete<Car>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted car id=${car.id}`)),
-      catchError(this.handleError<Car>('deleteCar'))
-    );
-  }
+  // addCar(car: Car): Observable<Car> {
+  //   return this.http.post<Car>(this.carsUrl, car, this.httpOptions).pipe(
+  //     tap((newCar: Car) => this.log(`added car w/ id=${newCar.id}`)),
+  //     catchError(this.handleError<Car>('addCar'))
+  //   );
+  // }
 
-  /* GET cares whose name contains search term */
-  searchCares(term: string): Observable<Car[]> {
-    if (!term.trim()) {
-      // if not search term, return empty car array.
-      return of([]);
-    }
-    return this.http.get<Car[]>(`${this.carsUrl}/?name=${term}`).pipe(
-      tap(x => x.length ?
-        this.log(`found cares matching "${term}"`) :
-        this.log(`no cares matching "${term}"`)),
-      catchError(this.handleError<Car[]>('searchCares', []))
-    );
-  }
+  // deleteCar(car: Car): Observable<Car> {
+  //   let url = `${this.carsUrl}/${car.id}`;
+  //   return this.http.delete<Car>(url, this.httpOptions).pipe(
+  //     tap(_ => this.log(`deleted car id=${car.id}`)),
+  //     catchError(this.handleError<Car>('deleteCar'))
+  //   );
+  // }
+
+  // /* GET cars whose name contains search term */
+  // searchCars(term: string): Observable<Car[]> {
+  //   if (!term.trim()) {
+  //     // if not search term, return empty car array.
+  //     return of([]);
+  //   }
+  //   return this.http.get<Car[]>(`${this.carsUrl}/?name=${term}`).pipe(
+  //     tap(x => x.length ?
+  //       this.log(`found cars matching "${term}"`) :
+  //       this.log(`no cars matching "${term}"`)),
+  //     catchError(this.handleError<Car[]>('searchCars', []))
+  //   );
+  // }
 
   /** Log a CarService message with the MessageService */
-  private log(message: string) {
+  private log(message: any) {
     // this.messageService.add(`CarService: ${message}`);
     console.log(message);
   }

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Car } from '../pick-car/car';
+import { Car, CarGasData } from '../pick-car/car';
+import { CarService } from '../car.service';
+
 
 @Component({
   selector: 'app-view-data',
@@ -10,10 +12,18 @@ export class ViewDataComponent implements OnInit {
 
   @Input() public selectedCar: Car | undefined;
 
-  constructor() { }
+  carGasData: CarGasData[] = [];
+
+  constructor(private carService: CarService) { }
 
   ngOnInit(): void {
-    
+    this.getCarGasData();
+  }
+
+  getCarGasData(): void {
+    if(this.selectedCar){
+      this.carService.getGasDataForCar(this.selectedCar).subscribe(carGasData => this.carGasData = carGasData);
+    }
   }
 
 }

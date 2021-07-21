@@ -5,3 +5,11 @@ export interface Car {
     model: string;
     year: string;
 }
+
+export interface CarGasData {
+    miles_driven: number;
+    gallons_used: number;
+    mpg: number;
+    cost: number;
+    date: string;
+}
