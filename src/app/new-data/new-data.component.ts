@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Car } from '../pick-car/car';
+
 
 @Component({
   selector: 'app-new-data',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-data.component.css']
 })
 export class NewDataComponent implements OnInit {
+
+  @Input() public selectedCar: Car | undefined;
 
   constructor() { }
 
