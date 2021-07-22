@@ -44,6 +44,7 @@ export class ViewDataComponent implements OnInit {
   openNewDataDialog(): void {
     const dialogRef = this.dialog.open(NewDataComponent, {
       width: '100%',
+      disableClose: true,
       data: this.selectedCar
     });
 

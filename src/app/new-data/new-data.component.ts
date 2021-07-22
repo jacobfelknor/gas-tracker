@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { Car } from '../pick-car/car';
+import { CarGasData } from '../pick-car/car';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -14,10 +15,32 @@ export class NewDataComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<NewDataComponent>,
     @Inject(MAT_DIALOG_DATA) public selectedCar: Car) { }
 
-  date: string = "";
+  data: CarGasData = {
+    miles_driven: 0,
+    gallons_used: 0,
+    mpg: 0,
+    cost: 0,
+    date: ""
+  };
 
   ngOnInit(): void {
-    console.log(this.selectedCar);
+
+  }
+
+  emptyFields(): boolean {
+    let conditions = [this.data.date == ""];
+    return conditions.every(x => x);
+  }
+
+  submitData(): void {
+    if (!this.emptyFields()) {
+      console.log(`submitting data...\nDate: ${this.data.date}`);
+      this.dialogRef.close();
+    }
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
   }
 
 }
