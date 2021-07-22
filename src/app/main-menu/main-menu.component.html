@@ -9,13 +9,12 @@
     <div class="btn-group-vertical menu" style="width: 100%;" role="group">
         <button type="button" (click)="selectMenuItem($event)" component="pick-car" class="btn btn-light btn-block">Pick
             Car</button>
-        <button type="button" (click)="selectMenuItem($event)" component="view-data"
-            class="btn btn-light btn-block" id='view-data-btn'>View Data</button>
-        <button type="button" (click)="selectMenuItem($event)" component="new-data" class="btn btn-light btn-block">New
-            Data</button>
+        <button type="button" (click)="selectMenuItem($event)" component="view-data" class="btn btn-light btn-block"
+            id='view-data-btn'>View Data</button>
+        <!-- <button type="button" (click)="selectMenuItem($event)" component="new-data" class="btn btn-light btn-block">New
+            Data</button> -->
     </div>
 </div>
 
 <app-pick-car *ngIf="this.selectedItem == 'pick-car'" (selectedCar)='selectCar($event)'></app-pick-car>
 <app-view-data *ngIf="this.selectedItem == 'view-data'" [selectedCar]="selectedCar"></app-view-data>
-<app-new-data *ngIf="this.selectedItem == 'new-data'" [selectedCar]="selectedCar"></app-new-data>

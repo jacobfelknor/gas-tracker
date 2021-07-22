@@ -37,4 +37,14 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
+
+<br>
+<div class="container">
+    <button style="float: right;" (click)="onNewDataClick()" mat-fab color="primary"
+        aria-label="Example icon button with a delete icon">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+<app-new-data *ngIf="showNewDataForm" [selectedCar]="selectedCar"></app-new-data>

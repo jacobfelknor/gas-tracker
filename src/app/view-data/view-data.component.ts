@@ -3,6 +3,7 @@ import { Car, CarGasData } from '../pick-car/car';
 import { CarService } from '../car.service';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 @Component({
@@ -14,9 +15,12 @@ export class ViewDataComponent implements OnInit {
 
   @Input() public selectedCar: Car | undefined;
 
+  @ViewChild(MatSort, { static: false }) sort!: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
+
   carGasData = new MatTableDataSource<CarGasData>([]);
 
-  @ViewChild(MatSort, { static: false }) sort!: MatSort;
+  showNewDataForm: boolean = false;
 
   constructor(private carService: CarService) { }
 
@@ -32,9 +36,14 @@ export class ViewDataComponent implements OnInit {
         carGasData => {
           this.carGasData = new MatTableDataSource<CarGasData>(carGasData);
           this.carGasData.sort = this.sort;
+          this.carGasData.paginator = this.paginator;
         }
       );
     }
+  }
+
+  onNewDataClick(): void {
+    this.showNewDataForm = !this.showNewDataForm;
   }
 
 }
