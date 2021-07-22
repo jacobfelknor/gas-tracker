@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, OnInit } from '@angular/core';
 import { Car, CarGasData } from '../pick-car/car';
 import { CarService } from '../car.service';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 @Component({
@@ -12,7 +14,9 @@ export class ViewDataComponent implements OnInit {
 
   @Input() public selectedCar: Car | undefined;
 
-  carGasData: CarGasData[] = [];
+  carGasData = new MatTableDataSource<CarGasData>([]);
+
+  @ViewChild(MatSort, { static: false }) sort!: MatSort;
 
   constructor(private carService: CarService) { }
 
@@ -24,7 +28,12 @@ export class ViewDataComponent implements OnInit {
 
   getCarGasData(): void {
     if (this.selectedCar) {
-      this.carService.getGasDataForCar(this.selectedCar).subscribe(carGasData => this.carGasData = carGasData);
+      this.carService.getGasDataForCar(this.selectedCar).subscribe(
+        carGasData => {
+          this.carGasData = new MatTableDataSource<CarGasData>(carGasData);
+          this.carGasData.sort = this.sort;
+        }
+      );
     }
   }
 

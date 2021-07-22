@@ -14,6 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table'
+import { MatSortModule } from '@angular/material/sort';
 
 // Mock server stuff
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -37,6 +38,7 @@ import { MatTableModule } from '@angular/material/table'
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
+    MatSortModule
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
