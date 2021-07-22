@@ -42,9 +42,8 @@
 
 <br>
 <div class="container">
-    <button style="float: right;" (click)="onNewDataClick()" mat-fab color="primary"
+    <button style="float: right;" (click)="openNewDataDialog()" mat-fab color="primary"
         aria-label="Example icon button with a delete icon">
         <mat-icon>add</mat-icon>
     </button>
 </div>
-<app-new-data *ngIf="showNewDataForm" [selectedCar]="selectedCar"></app-new-data>

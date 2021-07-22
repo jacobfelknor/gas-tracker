@@ -4,7 +4,8 @@ import { CarService } from '../car.service';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-
+import { MatDialog } from '@angular/material/dialog';
+import { NewDataComponent } from '../new-data/new-data.component';
 
 @Component({
   selector: 'app-view-data',
@@ -20,9 +21,7 @@ export class ViewDataComponent implements OnInit {
 
   carGasData = new MatTableDataSource<CarGasData>([]);
 
-  showNewDataForm: boolean = false;
-
-  constructor(private carService: CarService) { }
+  constructor(private carService: CarService, public dialog: MatDialog) { }
 
   displayedColumns: string[] = ["date", "cost", "gallons_used", "miles_driven", "mpg"]
 
@@ -42,8 +41,16 @@ export class ViewDataComponent implements OnInit {
     }
   }
 
-  onNewDataClick(): void {
-    this.showNewDataForm = !this.showNewDataForm;
+  openNewDataDialog(): void {
+    const dialogRef = this.dialog.open(NewDataComponent, {
+      width: '100%',
+      data: this.selectedCar
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.animal = result;
+    });
   }
 
 }
