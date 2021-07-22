@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="height: 60vh; overflow: auto;">
     <h5 *ngIf="selectedCar">Data for {{ selectedCar.pprint }}</h5>
     <h5 *ngIf="!selectedCar">No car is currently selected</h5>
 
@@ -37,7 +37,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
 </div>
 
 <br>

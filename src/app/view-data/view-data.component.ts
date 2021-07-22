@@ -35,7 +35,7 @@ export class ViewDataComponent implements OnInit {
         carGasData => {
           this.carGasData = new MatTableDataSource<CarGasData>(carGasData);
           this.carGasData.sort = this.sort;
-          this.carGasData.paginator = this.paginator;
+          // this.carGasData.paginator = this.paginator;
         }
       );
     }
