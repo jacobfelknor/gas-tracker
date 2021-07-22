@@ -1,13 +1,17 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark" data-toggle="affix">
+<!-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark" data-toggle="affix">
     <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
         <span *ngIf="!selectedCar" class="navbar-brand">Gas Tracker</span>
         <span *ngIf="selectedCar" class="navbar-brand">Gas Tracker ({{ selectedCar.name }})</span>
     </div>
-</nav>
+</nav> -->
 
+<mat-toolbar color=primary>
+    <span>Gas Tracker</span>
+</mat-toolbar>
+<br>
 <div class="container d-flex justify-content-center">
     <div class="btn-group-vertical menu" style="width: 100%;" role="group">
-        <button type="button" (click)="selectMenuItem($event)" component="pick-car" class="btn btn-light btn-block">Pick
+        <button type="button" (click)="selectMenuItem($event)" component="pick-car" class="btn btn-dark btn-block">Pick
             Car</button>
         <button type="button" (click)="selectMenuItem($event)" component="view-data" class="btn btn-light btn-block"
             id='view-data-btn'>View Data</button>
@@ -15,6 +19,6 @@
             Data</button> -->
     </div>
 </div>
-
+<br>
 <app-pick-car *ngIf="this.selectedItem == 'pick-car'" (selectedCar)='selectCar($event)'></app-pick-car>
 <app-view-data *ngIf="this.selectedItem == 'view-data'" [selectedCar]="selectedCar"></app-view-data>

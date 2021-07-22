@@ -13,7 +13,10 @@ export class NewDataComponent implements OnInit {
 
   constructor() { }
 
+  date: string = "";
+
   ngOnInit(): void {
+
   }
 
 }

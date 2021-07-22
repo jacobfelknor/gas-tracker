@@ -8,7 +8,7 @@ import { Car } from '../pick-car/car';
 })
 export class MainMenuComponent implements OnInit {
 
-  selectedItem: string | undefined;
+  selectedItem: string | undefined = "pick-car";
   selectedCar: Car | undefined;
 
   constructor() { }
@@ -35,7 +35,7 @@ export class MainMenuComponent implements OnInit {
     this.clearMenuSelection();
   }
 
-  clearMenuSelection(): void{
+  clearMenuSelection(): void {
     $('.menu').find('.btn-dark').removeClass('btn-dark').addClass('btn-light');
   }
 
