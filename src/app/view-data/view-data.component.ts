@@ -16,12 +16,14 @@ export class ViewDataComponent implements OnInit {
 
   constructor(private carService: CarService) { }
 
+  displayedColumns: string[] = ["date", "cost", "gallons_used", "miles_driven", "mpg"]
+
   ngOnInit(): void {
     this.getCarGasData();
   }
 
   getCarGasData(): void {
-    if(this.selectedCar){
+    if (this.selectedCar) {
       this.carService.getGasDataForCar(this.selectedCar).subscribe(carGasData => this.carGasData = carGasData);
     }
   }
