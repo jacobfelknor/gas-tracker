@@ -21,6 +21,9 @@ export class ViewDataComponent implements OnInit {
 
   carGasData = new MatTableDataSource<CarGasData>([]);
 
+  Number = Number;
+  Math = Math;
+
   constructor(private carService: CarService, public dialog: MatDialog) { }
 
   displayedColumns: string[] = ["date", "cost", "gallons_used", "miles_driven", "mpg"]
@@ -50,6 +53,7 @@ export class ViewDataComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.getCarGasData();
       // this.animal = result;
     });
   }

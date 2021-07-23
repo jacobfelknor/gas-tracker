@@ -39,11 +39,19 @@ export class CarService {
   }
 
   getGasDataForCar(car: Car): Observable<CarGasData[]> {
-    const url = `${this.carsUrl}/get_car_data/${car.id}`;
+    const url = `${this.carsUrl}/car_data/${car.id}`;
     return this.http.get<CarGasData[]>(url).pipe(
       tap(_ => this.log("fetched car data")),
       catchError(this.handleError<CarGasData[]>("fetching car data"))
     )
+  }
+
+  postGasDataForCar(car: Car, data: CarGasData): Observable<CarGasData> {
+    const url = `${this.carsUrl}/car_data/${car.id}`;
+    return this.http.post<CarGasData>(url, data, this.httpOptions).pipe(
+      tap((newData: CarGasData) => this.log(newData)),
+      catchError(this.handleError<CarGasData>('postGasDataForCar'))
+    );
   }
 
   // updateCar(car: Car): Observable<any> {
