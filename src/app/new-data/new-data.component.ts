@@ -16,11 +16,11 @@ export class NewDataComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public selectedCar: Car) { }
 
   data: CarGasData = {
-    miles_driven: 0,
-    gallons_used: 0,
-    mpg: 0,
-    cost: 0,
-    date: ""
+    miles_driven: null,
+    gallons_used: null,
+    mpg: null,
+    cost: null,
+    date: null,
   };
 
   ngOnInit(): void {
@@ -34,7 +34,8 @@ export class NewDataComponent implements OnInit {
 
   submitData(): void {
     if (!this.emptyFields()) {
-      console.log(`submitting data...\nDate: ${this.data.date}`);
+      console.log(`submitting data...`);
+      console.log(this.data);
       this.dialogRef.close();
     }
   }

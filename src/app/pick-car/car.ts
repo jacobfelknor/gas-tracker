@@ -8,9 +8,9 @@ export interface Car {
 }
 
 export interface CarGasData {
-    miles_driven: number;
-    gallons_used: number;
-    mpg: number;
-    cost: number;
-    date: string;
+    miles_driven: number | null;
+    gallons_used: number | null;
+    mpg: number | null;
+    cost: number | null;
+    date: string | null;
 }

@@ -7,3 +7,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 input::-webkit-calendar-picker-indicator {
     display: none;
 }
+
+.full-width {
+    width: 100%;
+}
+
+.date-width {
+    width: 80%;
+}
