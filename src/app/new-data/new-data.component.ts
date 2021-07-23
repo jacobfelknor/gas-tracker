@@ -29,8 +29,8 @@ export class NewDataComponent implements OnInit {
   }
 
   emptyFields(): boolean {
-    let conditions = [this.data.date == ""];
-    return conditions.every(x => x);
+    let conditions = [this.data.date, this.data.miles_driven, this.data.gallons_used, this.data.cost];
+    return conditions.some(x => x === null);
   }
 
   submitData(): void {
