@@ -34,14 +34,14 @@
             <td mat-cell *matCellDef="let element"> {{Math.round((element.mpg + Number.EPSILON) * 100) / 100}} </td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
 </div>
 
 <br>
-<div class="container">
+<div class="container" *ngIf="selectedCar">
     <button style="float: right;" (click)="openNewDataDialog()" mat-fab color="primary"
         aria-label="Example icon button with a delete icon">
         <mat-icon>add</mat-icon>
