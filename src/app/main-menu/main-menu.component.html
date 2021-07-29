@@ -9,6 +9,8 @@
     <span>Gas Tracker</span>
 </mat-toolbar>
 <br>
+<button (click)="auth.loginWithRedirect()">Log in</button>
+<br>
 <div class="container d-flex justify-content-center">
     <div class="btn-group-vertical menu" style="width: 100%;" role="group">
         <button type="button" (click)="selectMenuItem($event)" component="pick-car" class="btn btn-dark btn-block">Pick

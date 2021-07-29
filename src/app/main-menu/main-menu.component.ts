@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Car } from '../pick-car/car';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-main-menu',
@@ -11,7 +12,7 @@ export class MainMenuComponent implements OnInit {
   selectedItem: string | undefined = "pick-car";
   selectedCar: Car | undefined;
 
-  constructor() { }
+  constructor(public auth: AuthService) { }
 
   ngOnInit(): void {
   }

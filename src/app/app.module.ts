@@ -25,6 +25,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import { InMemoryDataService } from './in-memory-data.service';
 
+// auth0
+// Import the module from the SDK
+import { AuthModule } from '@auth0/auth0-angular';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,13 +53,17 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatIconModule,
     FormsModule,
     MatToolbarModule,
-    MatDialogModule
+    MatDialogModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
     // HttpClientInMemoryWebApiModule.forRoot(
     //   InMemoryDataService, { dataEncapsulation: false }
     // )
+    AuthModule.forRoot({
+      domain: 'dev-hxbkuu1h.us.auth0.com',
+      clientId: 'dYQlQtWN0L2gGPqjj5XA8XY8UroqGxgM'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
