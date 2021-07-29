@@ -9,7 +9,15 @@
     <span>Gas Tracker</span>
 </mat-toolbar>
 <br>
-<button (click)="auth.loginWithRedirect()">Log in</button>
+<ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+    <button (click)="auth.logout({ returnTo: document.location.origin })">
+        Log out
+    </button>
+</ng-container>
+
+<ng-template #loggedOut>
+    <button (click)="auth.loginWithRedirect()">Log in</button>
+</ng-template>
 <br>
 <div class="container d-flex justify-content-center">
     <div class="btn-group-vertical menu" style="width: 100%;" role="group">
