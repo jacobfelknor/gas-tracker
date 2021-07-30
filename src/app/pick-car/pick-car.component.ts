@@ -13,7 +13,7 @@ export class PickCarComponent implements OnInit {
 
   @Output() selectedCar = new EventEmitter<Car>();
 
-  @Input() public userID: number | undefined;
+  @Input() public userID: string | undefined;
 
   constructor(private carService: CarService) { }
 

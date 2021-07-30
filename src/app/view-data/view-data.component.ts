@@ -15,7 +15,7 @@ import { NewDataComponent } from '../new-data/new-data.component';
 export class ViewDataComponent implements OnInit {
 
   @Input() public selectedCar: Car | undefined;
-  @Input() public userID: number | undefined;
+  @Input() public userID: string | undefined;
 
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
