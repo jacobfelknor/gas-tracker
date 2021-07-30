@@ -14,12 +14,13 @@ export class MainMenuComponent implements OnInit {
   selectedItem: string | undefined = "pick-car";
   selectedCar: Car | undefined;
   isAuthenticated: boolean | undefined;
-  // loading: boolean = true;
+  userID: number | undefined;
 
   constructor(@Inject(DOCUMENT) public document: Document, public auth: AuthService) { }
 
   ngOnInit(): void {
     this.auth.isAuthenticated$.subscribe(val => this.isAuthenticated = val);
+    this.auth.user$.subscribe(val => this.userID = Number(val?.sub?.split("|")[1]));
   }
 
   selectMenuItem(e: Event): void {

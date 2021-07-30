@@ -54,8 +54,10 @@
         </div>
     </div>
     <br>
-    <app-pick-car *ngIf="this.selectedItem == 'pick-car' && (isAuthenticated)" (selectedCar)='selectCar($event)'>
+    <app-pick-car *ngIf="this.selectedItem == 'pick-car' && (isAuthenticated)" (selectedCar)='selectCar($event)'
+        [userID]="userID">
     </app-pick-car>
-    <app-view-data *ngIf="this.selectedItem == 'view-data' && (isAuthenticated)" [selectedCar]="selectedCar">
+    <app-view-data *ngIf="this.selectedItem == 'view-data' && (isAuthenticated)" [selectedCar]="selectedCar"
+        [userID]="userID">
     </app-view-data>
 </ng-template>

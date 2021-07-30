@@ -15,6 +15,7 @@ import { NewDataComponent } from '../new-data/new-data.component';
 export class ViewDataComponent implements OnInit {
 
   @Input() public selectedCar: Car | undefined;
+  @Input() public userID: number | undefined;
 
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
@@ -33,8 +34,9 @@ export class ViewDataComponent implements OnInit {
   }
 
   getCarGasData(): void {
-    if (this.selectedCar) {
-      this.carService.getGasDataForCar(this.selectedCar).subscribe(
+    console.log(this.userID);
+    if (this.selectedCar && this.userID) {
+      this.carService.getGasDataForCar(this.selectedCar, this.userID).subscribe(
         carGasData => {
           this.carGasData = new MatTableDataSource<CarGasData>(carGasData);
           this.carGasData.sort = this.sort;
@@ -48,7 +50,10 @@ export class ViewDataComponent implements OnInit {
     const dialogRef = this.dialog.open(NewDataComponent, {
       width: '100%',
       disableClose: true,
-      data: this.selectedCar
+      data: {
+        "car": this.selectedCar,
+        "user": this.userID
+      },
     });
 
     dialogRef.afterClosed().subscribe(result => {

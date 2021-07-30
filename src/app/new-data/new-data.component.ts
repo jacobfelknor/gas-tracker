@@ -14,7 +14,7 @@ export class NewDataComponent implements OnInit {
   // @Input() public selectedCar: Car | undefined;
 
   constructor(public dialogRef: MatDialogRef<NewDataComponent>,
-    @Inject(MAT_DIALOG_DATA) public selectedCar: Car, private carService: CarService) { }
+    @Inject(MAT_DIALOG_DATA) public input: any, private carService: CarService) { }
 
   data: CarGasData = {
     miles_driven: null,
@@ -36,7 +36,7 @@ export class NewDataComponent implements OnInit {
   submitData(): void {
     if (!this.emptyFields()) {
       console.log(`submitting data...`);
-      this.carService.postGasDataForCar(this.selectedCar, this.data).subscribe(carGasData => console.log(carGasData));
+      this.carService.postGasDataForCar(this.input.car, this.input.user, this.data,).subscribe(carGasData => console.log(carGasData));
       this.dialogRef.close();
     }
   }

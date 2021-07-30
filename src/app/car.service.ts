@@ -21,8 +21,8 @@ export class CarService {
   constructor(private http: HttpClient) { }
 
   /** GET cars from the server */
-  getCars(): Observable<Car[]> {
-    return this.http.get<Car[]>(`${this.carsUrl}/get_cars/`)
+  getCars(userID: number): Observable<Car[]> {
+    return this.http.get<Car[]>(`${this.carsUrl}/get_cars/${userID}`)
       .pipe(
         tap(_ => this.log(_)),
         catchError(this.handleError<Car[]>('getCars', []))
@@ -38,16 +38,16 @@ export class CarService {
     );
   }
 
-  getGasDataForCar(car: Car): Observable<CarGasData[]> {
-    const url = `${this.carsUrl}/car_data/${car.id}`;
+  getGasDataForCar(car: Car, userID: number): Observable<CarGasData[]> {
+    const url = `${this.carsUrl}/car_data/${userID}/${car.id}`;
     return this.http.get<CarGasData[]>(url).pipe(
       tap(_ => this.log("fetched car data")),
       catchError(this.handleError<CarGasData[]>("fetching car data"))
     )
   }
 
-  postGasDataForCar(car: Car, data: CarGasData): Observable<CarGasData> {
-    const url = `${this.carsUrl}/car_data/${car.id}`;
+  postGasDataForCar(car: Car, userID: number, data: CarGasData): Observable<CarGasData> {
+    const url = `${this.carsUrl}/car_data/${userID}/${car.id}`;
     return this.http.post<CarGasData>(url, data, this.httpOptions).pipe(
       tap((newData: CarGasData) => this.log(newData)),
       catchError(this.handleError<CarGasData>('postGasDataForCar'))
