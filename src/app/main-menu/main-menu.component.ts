@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Car } from '../pick-car/car';
 import { AuthService } from '@auth0/auth0-angular';
 import { DOCUMENT } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-main-menu',
@@ -12,10 +13,13 @@ export class MainMenuComponent implements OnInit {
 
   selectedItem: string | undefined = "pick-car";
   selectedCar: Car | undefined;
+  isAuthenticated: boolean | undefined;
+  // loading: boolean = true;
 
   constructor(@Inject(DOCUMENT) public document: Document, public auth: AuthService) { }
 
   ngOnInit(): void {
+    this.auth.isAuthenticated$.subscribe(val => this.isAuthenticated = val);
   }
 
   selectMenuItem(e: Event): void {
