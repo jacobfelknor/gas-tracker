@@ -21,9 +21,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 // Mock server stuff
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import { InMemoryDataService } from './in-memory-data.service';
+
+// auth0
+// Import the module from the SDK
+import { AuthModule } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [
@@ -49,13 +55,19 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatIconModule,
     FormsModule,
     MatToolbarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule,
+    MatProgressBarModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
     // HttpClientInMemoryWebApiModule.forRoot(
     //   InMemoryDataService, { dataEncapsulation: false }
     // )
+    AuthModule.forRoot({
+      domain: 'dev-hxbkuu1h.us.auth0.com',
+      clientId: 'dYQlQtWN0L2gGPqjj5XA8XY8UroqGxgM'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

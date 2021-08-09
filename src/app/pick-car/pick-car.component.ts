@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { CarService } from '../car.service';
 import { Car } from './car';
 
@@ -13,6 +13,8 @@ export class PickCarComponent implements OnInit {
 
   @Output() selectedCar = new EventEmitter<Car>();
 
+  @Input() public userID: string | undefined;
+
   constructor(private carService: CarService) { }
 
   ngOnInit(): void {
@@ -20,7 +22,7 @@ export class PickCarComponent implements OnInit {
   }
 
   getCars(): void {
-    this.carService.getCars().subscribe(cars => this.cars = cars);
+    this.carService.getCars(this.userID!).subscribe(cars => this.cars = cars);
   }
 
   // add(name: string): void {

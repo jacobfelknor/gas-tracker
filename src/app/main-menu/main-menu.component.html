@@ -5,20 +5,59 @@
     </div>
 </nav> -->
 
+
 <mat-toolbar color=primary>
     <span>Gas Tracker</span>
-</mat-toolbar>
-<br>
-<div class="container d-flex justify-content-center">
-    <div class="btn-group-vertical menu" style="width: 100%;" role="group">
-        <button type="button" (click)="selectMenuItem($event)" component="pick-car" class="btn btn-dark btn-block">Pick
-            Car</button>
-        <button type="button" (click)="selectMenuItem($event)" component="view-data" class="btn btn-light btn-block"
-            id='view-data-btn'>View Data</button>
-        <!-- <button type="button" (click)="selectMenuItem($event)" component="new-data" class="btn btn-light btn-block">New
-            Data</button> -->
+    <span class="toolbar-spacer"></span>
+    <div *ngIf="isAuthenticated">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="auth.logout({ returnTo: document.location.origin })">
+                <mat-icon>logout</mat-icon>
+                <span>Log Out</span>
+            </button>
+        </mat-menu>
     </div>
+</mat-toolbar>
+
+<div class="container" *ngIf="isAuthenticated === undefined; else loaded">
+    <br>
+    <br>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
-<br>
-<app-pick-car *ngIf="this.selectedItem == 'pick-car'" (selectedCar)='selectCar($event)'></app-pick-car>
-<app-view-data *ngIf="this.selectedItem == 'view-data'" [selectedCar]="selectedCar"></app-view-data>
+
+<ng-template #loaded>
+    <div *ngIf="!(isAuthenticated)" class="container">
+        <!-- <ng-template> -->
+        <!-- <button class="btn btn-dark btn-block" (click)="auth.loginWithRedirect()">Log in</button> -->
+        <div class="jumbotron">
+            <h1 class="display-4">Hello</h1>
+            <p class="lead">Welcome to Gas Tracker. To get started, log in or create an account</p>
+            <!-- <hr class="my-4">
+                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
+            <button class="btn btn-dark btn-lg" (click)="auth.loginWithRedirect()">Log in</button>
+        </div>
+        <!-- </ng-template> -->
+    </div>
+    <br>
+    <div *ngIf="isAuthenticated" class="container d-flex justify-content-center">
+        <div class="btn-group-vertical menu" style="width: 100%;" role="group">
+            <button type="button" (click)="selectMenuItem($event)" component="pick-car"
+                class="btn btn-dark btn-block">Pick
+                Car</button>
+            <button type="button" (click)="selectMenuItem($event)" component="view-data" class="btn btn-light btn-block"
+                id='view-data-btn'>View Data</button>
+            <!-- <button type="button" (click)="selectMenuItem($event)" component="new-data" class="btn btn-light btn-block">New
+                Data</button> -->
+        </div>
+    </div>
+    <br>
+    <app-pick-car *ngIf="this.selectedItem == 'pick-car' && (isAuthenticated)" (selectedCar)='selectCar($event)'
+        [userID]="userID">
+    </app-pick-car>
+    <app-view-data *ngIf="this.selectedItem == 'view-data' && (isAuthenticated)" [selectedCar]="selectedCar"
+        [userID]="userID">
+    </app-view-data>
+</ng-template>
