@@ -10,7 +10,7 @@ import { Car, CarGasData } from './pick-car/car';
 })
 export class CarService {
 
-  private carsUrl = 'http://10.0.0.173:8000/cars';  // URL to web api
+  private carsUrl = ' http://gas-tracker-django-env.eba-imuhdfyi.us-west-2.elasticbeanstalk.com/cars';  // URL to web api
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
