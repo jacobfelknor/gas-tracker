@@ -36,8 +36,12 @@ export class NewDataComponent implements OnInit {
   submitData(): void {
     if (!this.emptyFields()) {
       console.log(`submitting data...`);
-      this.carService.postGasDataForCar(this.input.car, this.input.user, this.data,).subscribe(carGasData => console.log(carGasData));
-      this.dialogRef.close();
+      this.carService.postGasDataForCar(this.input.car, this.input.user, this.data,).subscribe(
+        carGasData => {
+          console.log(carGasData)
+          this.dialogRef.close();
+        }
+      );
     }
   }
 
