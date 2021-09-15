@@ -5,12 +5,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Car, CarGasData } from './pick-car/car';
 
+import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class CarService {
 
-  private carsUrl = 'https://gastrackerapi.com/cars';  // URL to web api
+  private carsUrl = environment.production ?
+    'https://gastrackerapi.com/cars' : "http://localhost:8000/cars";  // URL to web api
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
