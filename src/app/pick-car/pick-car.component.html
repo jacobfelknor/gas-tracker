@@ -15,4 +15,14 @@
             <button (click)='selectCar(car)' class='btn btn-dark'>{{ car.name }}</button>
         </div>
     </div>
+
+    <div class="container">
+        <button style="right: 20px;
+        bottom: 20px;
+        left: auto;
+        position: absolute;" mat-fab color="primary" (click)="openNewDataDialog()"
+            aria-label="Example icon button with a delete icon">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
 </div>

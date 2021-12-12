@@ -60,14 +60,4 @@
     <app-view-data *ngIf="this.selectedItem == 'view-data' && (isAuthenticated)" [selectedCar]="selectedCar"
         [userID]="userID">
     </app-view-data>
-
-    <div class="container" *ngIf="this.selectedItem == 'pick-car' && (isAuthenticated)">
-        <button style="right: 20px;
-        bottom: 20px;
-        left: auto;
-        position: absolute;" mat-fab color="primary" (click)="openNewDataDialog()"
-            aria-label="Example icon button with a delete icon">
-            <mat-icon>add</mat-icon>
-        </button>
-    </div>
 </ng-template>

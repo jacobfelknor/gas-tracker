@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { CarService } from '../car.service';
+import { NewCarComponent } from '../new-car/new-car.component';
 import { Car } from './car';
 
 @Component({
@@ -15,7 +17,7 @@ export class PickCarComponent implements OnInit {
 
   @Input() public userID: string | undefined;
 
-  constructor(private carService: CarService) { }
+  constructor(private carService: CarService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getCars();
@@ -42,6 +44,21 @@ export class PickCarComponent implements OnInit {
   selectCar(car: Car): void {
     this.selectedCar.emit(car);
     $("#view-data-btn").trigger("click");
+  }
+
+  openNewDataDialog(): void {
+    const dialogRef = this.dialog.open(NewCarComponent, {
+      width: '100%',
+      disableClose: true,
+      data: {
+        "user": this.userID
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getCars();
+      console.log('The dialog was closed');
+    });
   }
 
 }
