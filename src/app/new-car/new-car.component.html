@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>New Car</h1>
+<div mat-dialog-content class="full-width">
+    <div>
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Car Name</mat-label>
+            <input type="text" required [(ngModel)]="this.data.name" matInput>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Make</mat-label>
+            <input type="text" required [(ngModel)]="this.data.make" matInput>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Model</mat-label>
+            <input type="text" required [(ngModel)]="this.data.model" matInput>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Year</mat-label>
+            <input type="year" required [(ngModel)]="this.data.year" matInput>
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions style="justify-content: flex-end;">
+    <button mat-button (click)="closeDialog()">Cancel</button>
+    <button mat-button (click)="submitData()" cdkFocusInitial>Submit</button>
+</div>

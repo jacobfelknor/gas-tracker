@@ -1,10 +1,10 @@
 export interface Car {
-    id: number;
-    name: string;
-    make: string;
-    model: string;
-    year: string;
-    pprint: string;
+    id: number | null;
+    name: string | null;
+    make: string | null;
+    model: string | null;
+    year: string | null;
+    pprint: string | null;
 }
 
 export interface CarGasData {
