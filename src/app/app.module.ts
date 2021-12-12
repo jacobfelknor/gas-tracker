@@ -30,6 +30,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 // auth0
 // Import the module from the SDK
 import { AuthModule } from '@auth0/auth0-angular';
+import { NewCarComponent } from './new-car/new-car.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AuthModule } from '@auth0/auth0-angular';
     MainMenuComponent,
     PickCarComponent,
     ViewDataComponent,
-    NewDataComponent
+    NewDataComponent,
+    NewCarComponent
   ],
   imports: [
     BrowserModule,

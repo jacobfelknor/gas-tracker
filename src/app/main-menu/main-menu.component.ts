@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Car } from '../pick-car/car';
 import { AuthService } from '@auth0/auth0-angular';
 import { DOCUMENT } from '@angular/common';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-main-menu',

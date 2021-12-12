@@ -42,7 +42,10 @@
 
 <br>
 <div class="container" *ngIf="selectedCar">
-    <button style="float: right;" (click)="openNewDataDialog()" mat-fab color="primary"
+    <button style="right: 20px;
+        bottom: 20px;
+        left: auto;
+        position: absolute;" (click)="openNewDataDialog()" mat-fab color="primary"
         aria-label="Example icon button with a delete icon">
         <mat-icon>add</mat-icon>
     </button>
