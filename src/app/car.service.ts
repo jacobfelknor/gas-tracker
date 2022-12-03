@@ -13,7 +13,9 @@ import { environment } from 'src/environments/environment';
 export class CarService {
 
   private carsUrl = environment.production ?
-    'https://api.mygastracker.com/cars' : "http://localhost:8000/cars";  // URL to web api
+    'https://apigastracker.jacobfelknor.com/cars' : "http://localhost:8000/cars";  // URL to web api
+
+  // private carsUrl = "http://localhost:8000/cars";
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
