@@ -25,3 +25,32 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Simple Production Deployment
+
+1. Run a build, as described above
+2. Place outputted files in a directory like `/var/www/gas_tracker_angular`
+3. Install NGINX if neccessary
+4. Use the following NGINX config
+
+```conf
+server {
+        listen 4200 default_server;
+        listen [::]:4200 default_server;
+
+        root /var/www/gas_tracker_angular;
+
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name _;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
+        }
+
+}
+```
+5. Restart NGINX and browse to your machine at port 4200
